@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from .models import Book
 
 app = FastAPI()
 
@@ -14,14 +15,14 @@ async def get_books():
 async def get_book(book_id: int):
     pass                             ##get database book id
 
-@app.post("/books/{book_id}")
-async def add_book(book_id: int):    ##add book to database
-    pass
+@app.post("/books/")
+async def create_book(book: Book):    ##create book on database
+    book_dict = book.dict()
 
 @app.put("/books/{book_id}")
-async def update_book(book_id: int): ##update database book
+async def update_book(book_id: int, book: Book): ##update database book
     pass
 
 @app.delete("/books/{book_id}")
 async def delete_book(book_id: int): ##delete database book
-    pass
+    pass 
